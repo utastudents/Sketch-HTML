@@ -20,7 +20,7 @@
 </head>
 <?php
 #python execution using command prompt  
-$command = escapeshellcmd('python main.py image\\nice.png');
+$command = escapeshellcmd('python main.py image\\colored.png');
 $output = shell_exec($command);
 $arr = json_decode($output); #array is decoded in php
 #var_dump($arr); - to check whether it is dumping array or not.
