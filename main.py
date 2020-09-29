@@ -11,7 +11,7 @@ import math
 import json
 
 
-def get_block(image, oracle, split):
+def get_block(image, oracle, split, alsoOracle):
 
     # Get the distance of unit
 
@@ -50,8 +50,11 @@ def get_block(image, oracle, split):
                 data[j, 2] = post[i, 1]
 
     # return json file to process in json
-
+    
     data = data.tolist()
+    for x in range(len(data)):
+        data[x].append(alsoOracle[x][2])
+
     return json.dumps(data)
 
 
@@ -137,12 +140,13 @@ def main(argv):
     # Save the image file
 
     cv2.imwrite('Shape_recognized.jpg', image)
+    alsoOracle = oracle
     oracle = np.array(oracle)
-    print(oracle)
+    #print(oracle)
     # Create the json file to return the following value to PHP
     # ["Type of shape", "RowID", "number of shape in the same row"]
 
-    jsonfile = get_block(image, oracle, (6, 6))
+    jsonfile = get_block(image, oracle, (6, 6),alsoOracle)
     print(jsonfile)
 
 
