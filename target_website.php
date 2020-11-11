@@ -25,6 +25,7 @@ if (isset($_POST['submit'])) {
 	$fileName = $_FILES['image']['name'];
   $fileSize = $_FILES['image']['size'];
   $typeOfImage = $_POST['typeOfImage'];
+  $typeOfFigure = $_POST['typeOfFigure'];
 
 	$fileType = $_FILES['image']['type'];
 	$fileNameCmps = explode(".", $fileName);
@@ -42,13 +43,16 @@ if (isset($_POST['submit'])) {
 	}
 }
 #python execution using command prompt  
-
-if($typeOfImage == "colored"){
+if($typeOfImage == "colored" && $typeOfFigure == "shapes" ){
   $string = "python main.py image/".$newFileName;
+  echo "we have entered.";
 
-} else {
+} else if($typeOfImage == "binary" && $typeOfFigure == "shapes") {
   $string = "python originalMain.py image/".$newFileName;
 
+} else if($typeOfFigure == "number") {
+  //$string = "python Numbers/originalMain.py image/".$newFileName;
+  $string = "python Numbers/performRecognition.py -c Numbers/digits_cls.pkl -i image/".$newFileName;
 }
 $command = escapeshellcmd($string);
 $output = system($command);
@@ -60,15 +64,20 @@ $ctr = $count_rows;
 $ct = 0;
 $flag=0;
 
-echo('<div class="row">'); #Starting the div
+echo('<div class="row" style="padding:4%">'); #Starting the div
 for($i=$count-1;$i>=0;$i--)
 {
 		if($arr[$i][1]==$ct)
 		{
 			$msg = $arr[$i][0];#checking the shape name.
 			$arrayt = $arr; #copying the array into a variable
-			$temp = $arr[$i][2];#no. of shapes in that row.
-			call_func($temp,$i,$msg,$arrayt);
+      $temp = $arr[$i][2];#no. of shapes in that row.
+      if($typeOfImage == "colored"){
+        $color = $arr[$i][3];
+      } else {
+        $color = "white";
+      }
+			call_func($temp,$i,$msg,$arrayt,$color,$typeOfFigure,$typeOfImage);
 			$flag=1;
 		}
 		else
@@ -76,8 +85,13 @@ for($i=$count-1;$i>=0;$i--)
 			#row is completed
 			echo "<br>";
 			$msg = $arr[$i][0];
-			$temp = $arr[$i][2];
-			call_func($temp,$i,$msg,$arrayt);
+      $temp = $arr[$i][2];
+      if($typeOfImage == "colored"){
+        $color = $arr[$i][3];
+      } else{
+        $color = "white";
+      }
+			call_func($temp,$i,$msg,$arrayt,$color, $typeOfFigure,$typeOfImage);
 			$flag=0;
 			$ct = $ct+ 1; 
 		}
@@ -85,15 +99,30 @@ for($i=$count-1;$i>=0;$i--)
 }
 
 # MAIN FUNCTION TO CALL RECIPE HTML
-function call_func($x,$y,$z,$a)
+function call_func($x,$y,$z,$a,$color,$typeOfFigure,$typeOfImage)
 {
+
+  if($typeOfImage == "colored" && $typeOfFigure == "shapes" ) {
+    echo "<style>
+    p {
+    color:white!important;
+    }
+
+    .title, .title a, .card-title, .card-title a, .info-title, .info-title a, .footer-brand, .footer-brand a, .footer-big h5, .footer-big h5 a, .footer-big h4, .footer-big h4 a, .media .media-heading, .media .media-heading a {
+    color: white!important;
+    font-weight: bold!important;
+    }
+    </style>";
+  }
 	
 	for($j=1;$j<=4;$j++)
 	{
 	if($j==$x)
 	{
-		if($a[$y][0]=='circle')
+    if($a[$y][0] == "circle" or $a[$y][0] == "0" )
+
 		{
+
 			if($j==1){
 			$vari = '12';
 			}if($j==2){
@@ -147,8 +176,9 @@ function call_func($x,$y,$z,$a)
 			echo $circlea;
 		}
 		else
-			if($a[$y][0]=='rectangle')
+			if($a[$y][0]=='rectangle' or (int)$a[$y][0] == "1")
 		{
+
 			if($j==1){
 			$vari = '12';
 			}if($j==2){
@@ -157,9 +187,21 @@ function call_func($x,$y,$z,$a)
 			$vari = '4';
 			}if($j==4){
 			$vari = '3';
-			}
+      }
+      
+      if($typeOfImage == "binary" && $typeOfFigure == "shapes"){
+        $color = "darkblue";
+        echo "<style>
+        .navbar .navbar-brand {
+        color:white!important;
+        }
+        .navbar .navbar-nav .nav-item .nav-link{
+        color:white!important;
+        }
+        </style>";
+      }
 			
-			$rectanglea = '<nav class="navbar col-md-'.$vari.' navbar-expand-lg bg-primary">
+			$rectanglea = '<nav class="navbar col-md-'.$vari.' navbar-expand-lg" style="background-color:'.$color.'; border-top: 1px solid #eee;;margin-bottom:40px">
   <div class="container">
     <a class="navbar-brand" href="#">COMPANY</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#example-navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -195,7 +237,7 @@ function call_func($x,$y,$z,$a)
 			echo $rectanglea;
 		}
 		else
-		if($a[$y][0]=='triangle')
+		if($a[$y][0]=='triangle' or $a[$y][0]=="2")
 		{
 			if($j==1){
 			$vari = '12';
@@ -208,26 +250,25 @@ function call_func($x,$y,$z,$a)
 			}
 			
 			$trianglea = '
-          <div class="col-md-'.$vari.'">
-            <div class="info">
-              <div class="icon icon-danger">
-                <i class="nc-icon nc-album-2"></i>
-              </div>
-              <div class="description">
-                <h4 class="info-title">Beautiful Gallery</h4>
-                <p class="description">Spend your time generating new ideas. You dont have to think of implementing.</p>
-                <a href="javascript:;" class="btn btn-link btn-danger">See more</a>
-              </div>
+        <div class="mb-6 mt-6 card col-md-'.$vari.'"  style="padding:50px; text-align:center; margin-bottom: 65px;">
+          <div class="info" style="background-color:'.$color.'">
+            <div class="icon icon-danger">
+              <i class="nc-icon nc-album-2"></i>
+            </div>
+            <div class="description">
+              <h4 class="info-title">Beautiful Gallery</h4>
+              <p class="description">Spend your time generating new ideas. You dont have to think of implementing.</p>
+              <a href="javascript:;" class="btn btn-link btn-danger">See more</a>
             </div>
           </div>
-		
+        </div>
 		';
 			
 			
 			
 			echo $trianglea;
 		}else
-		if($a[$y][0]=='square')
+		if($a[$y][0]=='square' or  $a[$y][0]=="3")
 		{
 			if($j==1){
 			$vari = '12';
@@ -240,9 +281,9 @@ function call_func($x,$y,$z,$a)
 			}
 			
 			$squarea = '
-          <div class="card col-md-'.$vari.' mb-5">
+          <div class="card col-md-'.$vari.' mb-5" style="padding:30px">
             <img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" style="height: 180px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22320%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20320%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16d79b88335%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16d79b88335%22%3E%3Crect%20width%3D%22320%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22119.0078125%22%20y%3D%2297.2%22%3E320x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
-            <div class="card-body">
+            <div class="card-body" style="background-color:'.$color.'">
               <h4 class="card-title">Card title</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
               <a href="#" class="btn btn-primary">Go somewhere</a>
@@ -255,7 +296,7 @@ function call_func($x,$y,$z,$a)
 			
 			echo $squarea;
 		}else
-		if($a[$y][0]=='hexagon')
+		if($a[$y][0] == 'hexagon' or $a[$y][0]=="4")
 		{
 			if($j==1){
 			$vari = '12';
@@ -268,14 +309,14 @@ function call_func($x,$y,$z,$a)
 			}
 			
 			$hexagona = '
-          <div class="col-md-'.$vari.'">
+          <div class="col-md-'.$vari.'" style="padding:30px">
             <div class="card card-profile card-plain">
               <div class="card-avatar">
                 <a href="#avatar">
                   <img src="./assets/img/faces/clem-onojeghuo-3.jpg" alt="...">
                 </a>
               </div>
-              <div class="card-body">
+              <div class="card-body" style="background-color:'.$color.'">
                 <a href="#paper-kit">
                   <div class="author">
                     <h4 class="card-title">Henry Ford</h4>
@@ -334,7 +375,7 @@ function call_func($x,$y,$z,$a)
               ©
               <script>
                 document.write(new Date().getFullYear())
-              </script>20192019, made with <i class="fa fa-icon icon"></i> by Deep &amp; Harsh
+              </script>20192019, made with <i class="fa fa-icon icon"></i> by  Harsh &nbsp; & Deep;
             </span>
           </div>
         </div>

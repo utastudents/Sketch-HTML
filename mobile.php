@@ -236,7 +236,7 @@ background: linear-gradient(to left, #0DDC50, #212EA6);    padding: 3%;
                         <img src="https://www.pngkey.com/png/full/115-1155945_readysites-web-design-white-icon-png.png" alt=""/>
                         <h3>Welcome</h3>
                         <p><h4>Convert sketches into skeletal websites and mobile apps.</h4> </p>
-                        <input type="submit" name="" value="INSTRUCTIONS"/><br/>
+                        <a href="instructions.png"><input  name="" value="INSTRUCTIONS"/><br/>
                     </div>
                     
                     <div class="col-md-9 register-right">

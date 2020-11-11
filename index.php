@@ -234,7 +234,7 @@ background: linear-gradient(to left, #0DDC50, #212EA6);
                         <img src="https://www.pngkey.com/png/full/115-1155945_readysites-web-design-white-icon-png.png" alt=""/>
                         <h3>Welcome</h3>
                         <p><h4>Convert sketches into skeletal websites and mobile apps.</h4> </p>
-                        <input  name="" value="INSTRUCTIONS"/><br/>
+                        <a href="instructions.png"><input  name="" value="INSTRUCTIONS"/><br/>
                     </div>
                     
                     <div class="col-md-9 register-right">
@@ -289,6 +289,21 @@ background: linear-gradient(to left, #0DDC50, #212EA6);
                                                 <label class="radio inline"> 
                                                     <input type="radio" name="typeOfImage" value="colored" >
                                                     <span> Colored </span> 
+                                                </label>
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="maxl">
+                                                <label class="radio inline"> 
+                                                    <input type="radio" name="typeOfFigure" value="number">
+                                                    <span> Numbers </span> 
+                                                </label>
+                                                &nbsp;&nbsp;
+                                                <label class="radio inline"> 
+                                                    <input type="radio" name="typeOfFigure" value="shapes" >
+                                                    <span> Shapes </span> 
                                                 </label>
                                                 
                                             </div>
