@@ -107,6 +107,7 @@ background: linear-gradient(to left, #0DDC50, #212EA6);
     margin-top: 8%;
     margin-bottom: -15%;
     color: #495057;
+    display: inline-block;
 }
 
 .file-upload {
@@ -234,7 +235,12 @@ background: linear-gradient(to left, #0DDC50, #212EA6);
                         <img src="https://www.pngkey.com/png/full/115-1155945_readysites-web-design-white-icon-png.png" alt=""/>
                         <h3>Welcome</h3>
                         <p><h4>Convert sketches into skeletal websites and mobile apps.</h4> </p>
-                        <a href="instructions.png"><input  name="" value="INSTRUCTIONS"/><br/>
+                        <a href="instructions.html"><input  name="" value="Shape Instructions" style= "text-align: center;
+    margin-top: 10px;
+    width: 100%;"/><br/>
+                        <br/>
+
+
                     </div>
                     
                     <div class="col-md-9 register-right">
@@ -247,10 +253,11 @@ background: linear-gradient(to left, #0DDC50, #212EA6);
                             </li>
                         </ul>
 
-                        <div class="tab-content" id="myTabContent">
+                        <div class="tab-content" id="myTabContent" style="text-align:center">
+                        <h3 class="register-heading">Add all the required parameters </h3>
+
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                                <h3 class="register-heading">Add all the required parameters </h3>
 
                                 <div class="row register-form">
                                     <div class="col-md-6">
@@ -283,7 +290,7 @@ background: linear-gradient(to left, #0DDC50, #212EA6);
                                             <div class="maxl">
                                                 <label class="radio inline"> 
                                                     <input type="radio" name="typeOfImage" value="binary">
-                                                    <span> Black & White </span> 
+                                                    <span> Black / White </span> 
                                                 </label>
                                                 &nbsp;&nbsp;
                                                 <label class="radio inline"> 
@@ -305,18 +312,25 @@ background: linear-gradient(to left, #0DDC50, #212EA6);
                                                     <input type="radio" name="typeOfFigure" value="shapes" >
                                                     <span> Shapes </span> 
                                                 </label>
+                                                &nbsp;&nbsp;
+
+                                                <label class="radio inline"> 
+                                                    <input type="radio" name="typeOfFigure" value="characters" >
+                                                    <span> Characters </span> 
+                                                </label>
+                                                
                                                 
                                             </div>
                                         </div>
                                         
-                                        <div class="form-group">
+                                        <!----<div class="form-group">
                                             <select class="form-control">
                                                 <option class="hidden"  selected disabled>Please select your Grid Size </option>
                                                 <option>6 by 6</option>
                                                 <option>5 by 5</option>
                                                 <option>4 by 4</option>
                                             </select>
-                                        </div>
+                                        </div> --->
                                         
                                         <input type="submit" name="submit" value="SUBMIT" class="btnRegister" />
                                         

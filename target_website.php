@@ -53,11 +53,18 @@ if($typeOfImage == "colored" && $typeOfFigure == "shapes" ){
 } else if($typeOfFigure == "number") {
   //$string = "python Numbers/originalMain.py image/".$newFileName;
   $string = "python Numbers/performRecognition.py -c Numbers/digits_cls.pkl -i image/".$newFileName;
+} else if($typeOfFigure == "characters") {
+  //$string = "python Numbers/originalMain.py image/".$newFileName;
+  echo "we have entered characters..";
+
+  $string = "python Characters/segment.py -i image/".$newFileName;
 }
+
 $command = escapeshellcmd($string);
 $output = system($command);
 $arr = json_decode($output); #array is decoded in php
-#var_dump($arr); - to check whether it is dumping array or not.
+#echo $arr;
+#var_dump($arr); #- to check whether it is dumping array or not.
 $count = count($arr);
 $count_rows = $arr[$count-1][2];
 $ctr = $count_rows;
@@ -119,7 +126,19 @@ function call_func($x,$y,$z,$a,$color,$typeOfFigure,$typeOfImage)
 	{
 	if($j==$x)
 	{
-    if($a[$y][0] == "circle" or $a[$y][0] == "0" )
+
+   
+    if($j==1){
+			$vari = '12';
+			}if($j==2){
+			$vari = '6';
+			}if($j==3){
+			$vari = '4';
+			}if($j==4){
+			$vari = '3';
+			}
+
+    if($a[$y][0] == "circle" or $a[$y][0] == "0" or $a[$y][0] == "10" )
 
 		{
 
@@ -176,7 +195,7 @@ function call_func($x,$y,$z,$a,$color,$typeOfFigure,$typeOfImage)
 			echo $circlea;
 		}
 		else
-			if($a[$y][0]=='rectangle' or (int)$a[$y][0] == "1")
+			if($a[$y][0]=='rectangle' or $a[$y][0] == "1" or $a[$y][0] == "11")
 		{
 
 			if($j==1){
@@ -237,7 +256,7 @@ function call_func($x,$y,$z,$a,$color,$typeOfFigure,$typeOfImage)
 			echo $rectanglea;
 		}
 		else
-		if($a[$y][0]=='triangle' or $a[$y][0]=="2")
+		if($a[$y][0]=='triangle' or $a[$y][0]=="2" or $a[$y][0] == "12")
 		{
 			if($j==1){
 			$vari = '12';
@@ -268,7 +287,7 @@ function call_func($x,$y,$z,$a,$color,$typeOfFigure,$typeOfImage)
 			
 			echo $trianglea;
 		}else
-		if($a[$y][0]=='square' or  $a[$y][0]=="3")
+		if($a[$y][0]=='square' or  $a[$y][0]=="3" or $a[$y][0] == "13")
 		{
 			if($j==1){
 			$vari = '12';
@@ -296,7 +315,7 @@ function call_func($x,$y,$z,$a,$color,$typeOfFigure,$typeOfImage)
 			
 			echo $squarea;
 		}else
-		if($a[$y][0] == 'hexagon' or $a[$y][0]=="4")
+		if($a[$y][0] == 'hexagon' or $a[$y][0]=="4" or $a[$y][0] == "14")
 		{
 			if($j==1){
 			$vari = '12';
@@ -341,7 +360,7 @@ function call_func($x,$y,$z,$a,$color,$typeOfFigure,$typeOfImage)
 			
 			echo $hexagona;
 		}else
-		if($a[$y][0]=='pentagon')
+		if($a[$y][0]=='pentagon' or $a[$y][0]=="5" or $a[$y][0] == "15")
 		{
 			if($j==1){
 			$vari = '12';
@@ -387,9 +406,592 @@ function call_func($x,$y,$z,$a,$color,$typeOfFigure,$typeOfImage)
 			
 			
 			echo $pentagona;
-		}else
+    }
+    
+    else
+     	if($a[$y][0]=="16")
 		{
-		}
+      # Instagram icon
+      $sixteen = ' <div class="col-md-'.$vari.'"> 
+                      <div class="box-part text-center">
+                      <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+                      <div class="title">
+                        <h4>Instagram</h4>
+                      </div>
+                      <div class="text">
+                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
+                      </div>
+                      <a href="#">Learn More</a>
+                      </div>
+                  </div>	 
+    ';
+    echo $sixteen;
+    }
+
+    else
+     	if($a[$y][0]=="17")
+		{
+
+      #Facebook
+      $seventeen = ' <div class="col-md-'.$vari.'"> 
+                      <div class="box-part text-center">
+                      <i class="fa fa-facebook   fa-3x" aria-hidden="true"></i>
+                      <div class="title">
+                        <h4>Facebook</h4>
+                      </div>
+                      <div class="text">
+                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
+                      </div>
+                      <a href="#">Learn More</a>
+                      </div>
+                  </div>	 
+    ';
+    echo $seventeen;
+
+    }
+
+    else
+     	if($a[$y][0]=="18")
+		{
+      #Google 
+      $eighteen = ' <div class="col-md-'.$vari.'"> 
+                      <div class="box-part text-center">
+                      <i class="fa fa-google-plus fa-3x" aria-hidden="true"></i>
+                      <div class="title">
+                        <h4>Google</h4>
+                      </div>
+                      <div class="text">
+                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
+                      </div>
+                      <a href="#">Learn More</a>
+                      </div>
+                  </div>	 
+    ';
+    echo $eighteen;
+
+    }
+
+
+    else
+     	if($a[$y][0]=="19")
+		{
+      #Pinterest
+      $nineteen = ' <div class="col-md-'.$vari.'"> 
+                      <div class="box-part text-center">
+                      <i class="fa fa-pinterest-p fa-3x" aria-hidden="true"></i>
+                      <div class="title">
+                        <h4>Pinterest</h4>
+                      </div>
+                      <div class="text">
+                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
+                      </div>
+                      <a href="#">Learn More</a>
+                      </div>
+                  </div>	 
+    ';
+    echo $nineteen;
+
+    }
+
+
+    else
+     	if($a[$y][0]=="20")
+		{
+      #Github
+      $twenty = ' <div class="col-md-'.$vari.'"> 
+                      <div class="box-part text-center">
+                      <i class="fa fa-github fa-3x" aria-hidden="true"></i>
+                      <div class="title">
+                        <h4>Github</h4>
+                      </div>
+                      <div class="text">
+                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
+                      </div>
+                      <a href="#">Learn More</a>
+                      </div>
+                  </div>	 
+    ';
+    echo $twenty;
+
+    }
+
+
+    else
+    if($a[$y][0]=="21")
+ {
+   #Image Card with Description
+   $twentyone = ' <div class="col-md-'.$vari.' lib-item" data-category="view">
+   <div class="lib-panel">
+       <div class="row box-shadow-image">
+           <div class="col-md-6">
+               <img class="lib-img-show" src="http://lorempixel.com/850/850/?random=256">
+           </div>
+           <div class="col-md-6">
+               <div class="lib-row lib-header">
+                   Example library
+                   <div class="lib-header-seperator"></div>
+               </div>
+               <div class="lib-row lib-desc">
+                   Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+
+ ';
+ echo $twentyone;
+
+ }
+
+
+
+ else
+    if($a[$y][0]=="22")
+ {
+   #Image Card with Description
+   $twentytwo = ' <div class="col-md-'.$vari.' lib-item" data-category="view">
+   <div class="lib-panel">
+       <div class="row box-shadow-image">
+            <div class="col-md-6">
+               <div class="lib-row lib-header">
+                   Example library
+                   <div class="lib-header-seperator"></div>
+               </div>
+               <div class="lib-row lib-desc">
+                   Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+               </div>
+           </div>
+
+           <div class="col-md-6">
+               <img class="lib-img-show" src="http://lorempixel.com/850/850/?random=256">
+           </div>
+           
+       </div>
+   </div>
+</div>
+
+ ';
+ echo $twentytwo;
+
+ }
+
+
+ else
+    if($a[$y][0]=="23")
+ {
+   # Customer Number
+   $twentythree = '<div class="col-md-'.$vari.' text-center"  style="margin-top:60px;">
+   <div class="counter">
+<i class="fa fa-code fa-2x"></i>
+<h2 class="timer count-title count-number" data-to="100" data-speed="1500"></h2>
+<p class="count-text ">Our Customer</p>
+       <p class="count-text "><h2>1000+</h2></p>
+
+</div></div>
+
+ ';
+ echo $twentythree;
+
+ }
+
+
+ else
+ if($a[$y][0]=="24")
+{
+# Happy Clients Number
+$twentyfour = '
+
+<div class="col-md-'.$vari.' text-center"  style="margin-top:60px;">
+<div class="counter">
+<i class="fa fa-coffee fa-2x"></i>
+<h2 class="timer count-title count-number" data-to="1700" data-speed="1500"></h2>
+<p class="count-text ">Happy Clients</p>
+     <p class="count-text "><h2>99+</h2></p>
+
+</div>
+</div>
+
+';
+echo $twentyfour;
+
+}
+
+
+
+else
+ if($a[$y][0]=="25")
+{
+# Project Number
+$twentyfive = '
+
+<div class="col-md-'.$vari.' text-center"  style="margin-top:60px;">
+<div class="counter">
+<i class="fa fa-lightbulb-o fa-2x"></i>
+<h2 class="timer count-title count-number" data-to="11900" data-speed="1500"></h2>
+<p class="count-text ">Project Complete</p>
+  <p class="count-text "><h2>499+</h2></p>
+</div></div>
+
+';
+echo $twentyfive;
+
+}
+
+
+
+else
+ if($a[$y][0]=="26")
+        {
+        # Coffee Number
+        $twentysix = '
+
+        <div class="col-md-'.$vari.' text-center" style="margin-top:60px;">
+        <div class="counter">
+        <i class="fa fa-bug fa-2x"></i>
+        <h2 class="timer count-title count-number" data-to="157" data-speed="1500"></h2>
+        <p class="count-text ">Coffee With Clients</p>
+              <p class="count-text "><h2>699+</h2></p>
+
+        </div>
+        </div>
+
+        ';
+        echo $twentysix;
+
+        }
+
+
+else
+ if($a[$y][0]=="27")
+        {
+        # Cars Number
+        $twentyseven = '
+
+        <div class="col-md-'.$vari.'" style="
+        margin-top:60px;
+    display: inline-table;
+    padding: 0px;
+">
+            <div class="card border-info mx-sm-1 p-3">
+                <div class="card border-info shadow text-info pb-3 my-card"><i class="fa fa-car icon-fa" aria-hidden="true"></i></div>
+                <div class="text-info text-center mt-3"><h4>Cars</h4></div>
+                <div class="text-info text-center mt-2"><h1>234</h1></div>
+            </div>
+        </div>
+
+        ';
+        echo $twentyseven;
+
+        }
+
+else
+ if($a[$y][0]=="28")
+        {
+        # Eyes Number
+        $twentyeight = '
+
+        <div class="col-md-'.$vari.'" style="        margin-top:60px;
+
+        display: inline-table;
+        padding: 0px;
+    ">
+            <div class="card border-success mx-sm-1 p-3">
+                <div class="card border-success shadow text-success p-3 my-card"><i class="fa fa-eye icon-fa" aria-hidden="true"></i></div>
+                <div class="text-success text-center mt-3"><h4>Eyes</h4></div>
+                <div class="text-success text-center mt-2"><h1>9332</h1></div>
+            </div>
+        </div>
+        ';
+        echo $twentyeight;
+
+        }
+    
+
+
+
+        else
+        if($a[$y][0]=="29")
+               {
+               # Hearts Number
+               $twentynine = '
+               <div class="col-md-'.$vari.'" style="        margin-top:60px;
+
+               display: inline-table;
+               padding: 0px;">
+               <div class="card border-danger mx-sm-1 p-3">
+                   <div class="card border-danger shadow text-danger p-3 my-card"><i class="fa fa-heart icon-fa" aria-hidden="true"></i></div>
+                   <div class="text-danger text-center mt-3"><h4>Hearts</h4></div>
+                   <div class="text-danger text-center mt-2"><h1>346</h1></div>
+               </div>
+           </div>
+               ';
+               echo $twentynine;
+       
+               }
+
+
+
+               else
+               if($a[$y][0]=="30")
+                      {
+                      # Inbox Number
+                      $thirty = '
+                      <div class="col-md-'.$vari.'" style="        margin-top:60px;
+
+                      display: inline-table;
+                      padding: 0px;">
+                      <div class="card border-warning mx-sm-1 p-3">
+                          <div class="card border-warning shadow text-warning p-3 my-card"><i class="fa fa-inbox icon-fa" aria-hidden="true"></i></div>
+                          <div class="text-warning text-center mt-3"><h4>Inbox</h4></div>
+                          <div class="text-warning text-center mt-2"><h1>346</h1></div>
+                      </div>
+                  </div>
+                      ';
+                      echo $thirty;
+              
+                      }
+
+
+
+
+            else
+               if($a[$y][0]=="31")
+                      {
+                        if($j==1){
+                          $vari = '12';
+                          }if($j==2){
+                          $vari = '6';
+                          }if($j==3){
+                          $vari = '4';
+                          }if($j==4){
+                          $vari = '3';
+                          }
+                      # Starter Pricing Number
+                      $thirtyone = '
+                      <div class="col-md-'.$vari.' princing-item red text-center">
+                            <div class="pricing-divider ">
+                                <h3 class="text-light">STARTER</h3>
+                              <h4 class="my-0 text-light font-weight-normal mb-3"><span class="h3">$</span> 120 <span class="h5">/mo</span></h4>
+                               <svg class="pricing-divider-img" enable-background="new 0 0 300 100" height="100px" id="Layer_1" preserveAspectRatio="none" version="1.1" viewBox="0 0 300 100" width="300px" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
+                            <path class="deco-layer deco-layer--1" d="M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+                    c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z" fill="#FFFFFF" opacity="0.6"></path>
+                            <path class="deco-layer deco-layer--2" d="M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+                    c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z" fill="#FFFFFF" opacity="0.6"></path>
+                            <path class="deco-layer deco-layer--3" d="M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+                    H42.401L43.415,98.342z" fill="#FFFFFF" opacity="0.7"></path>
+                            <path class="deco-layer deco-layer--4" d="M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+                    c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z" fill="#FFFFFF"></path>
+                          </svg>
+                            </div>
+                            <div class="card-body bg-white mt-0 shadow">
+                              <ul class="list-unstyled mb-5 position-relative">
+                                <li><b>10</b> users included</li>
+                                <li><b>2 GB</b> of storage</li>
+                                <li><b>Free </b>Email support</li>
+                                <li><b>Help center access</b></li>
+                              </ul>
+                              <button type="button" class="btn btn-lg btn-block  btn-custom ">Sign up for free</button>
+                            </div>
+                          </div>
+                      ';
+                      echo $thirtyone;
+              
+                      }
+
+
+
+
+
+
+
+                      else
+                      if($a[$y][0]=="32")
+                             {
+                              if($j==1){
+                                $vari = '12';
+                                }if($j==2){
+                                $vari = '6';
+                                }if($j==3){
+                                $vari = '4';
+                                }if($j==4){
+                                $vari = '3';
+                                }
+                             # Business Pricing Number
+                             $thirtytwo = '
+                             <div class="col-md-'.$vari.' princing-item blue text-center">
+                             <div class="pricing-divider ">
+                                 <h3 class="text-light">BUSINESS</h3>
+                               <h4 class="my-0  text-light font-weight-normal mb-3"><span class="h3">$</span> 250 <span class="h5">/mo</span></h4>
+                                <svg class="pricing-divider-img" enable-background="new 0 0 300 100" height="100px" id="Layer_1" preserveAspectRatio="none" version="1.1" viewBox="0 0 300 100" width="300px" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
+                             <path class="deco-layer deco-layer--1" d="M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+                     c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z" fill="#FFFFFF" opacity="0.6"></path>
+                             <path class="deco-layer deco-layer--2" d="M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+                     c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z" fill="#FFFFFF" opacity="0.6"></path>
+                             <path class="deco-layer deco-layer--3" d="M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+                     H42.401L43.415,98.342z" fill="#FFFFFF" opacity="0.7"></path>
+                             <path class="deco-layer deco-layer--4" d="M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+                     c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z" fill="#FFFFFF"></path>
+                           </svg>
+                             </div>
+                   
+                             <div class="card-body bg-white mt-0 shadow">
+                               <ul class="list-unstyled mb-5 position-relative">
+                                 <li><b>100 </b>users included</li>
+                                 <li><b>10 GB</b> of storage</li>
+                                 <li><b>Free</b>Email support</li>
+                                 <li><b>Help center access</b></li>
+                               </ul>
+                               <button type="button" class="btn btn-lg btn-block  btn-custom ">Sign up for free</button>
+                             </div>
+                           </div>
+                             ';
+                             echo $thirtytwo;
+                     
+                             }
+
+
+
+
+
+
+
+
+
+                             else
+                             if($a[$y][0]=="33")
+                                    {
+                                      if($j==1){
+                                        $vari = '12';
+                                        }if($j==2){
+                                        $vari = '6';
+                                        }if($j==3){
+                                        $vari = '4';
+                                        }if($j==4){
+                                        $vari = '3';
+                                        }
+                                    # Pro Pricing Number
+                                    $thirtythree = '
+                                    <div class="col-md-'.$vari.' princing-item green text-center">
+                                    <div class="pricing-divider ">
+                                        <h3 class="text-light">PRO</h3>
+                                      <h4 class="my-0 text-light font-weight-normal mb-3"><span class="h3">$</span> 450 <span class="h5">/mo</span></h4>
+                                       <svg class="pricing-divider-img" enable-background="new 0 0 300 100" height="100px" id="Layer_1" preserveAspectRatio="none" version="1.1" viewBox="0 0 300 100" width="300px" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
+                                    <path class="deco-layer deco-layer--1" d="M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+                            c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z" fill="#FFFFFF" opacity="0.6"></path>
+                                    <path class="deco-layer deco-layer--2" d="M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+                            c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z" fill="#FFFFFF" opacity="0.6"></path>
+                                    <path class="deco-layer deco-layer--3" d="M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+                            H42.401L43.415,98.342z" fill="#FFFFFF" opacity="0.7"></path>
+                                    <path class="deco-layer deco-layer--4" d="M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+                            c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z" fill="#FFFFFF"></path>
+                                  </svg>
+                                    </div>
+                          
+                                    <div class="card-body bg-white mt-0 shadow">
+                                      <ul class="list-unstyled mb-5 position-relative">
+                                        <li><b>300</b> users included</li>
+                                        <li><b>20 GB</b> of storage</li>
+                                        <li><b>Free</b> Email support</li>
+                                        <li><b>Help center access</b></li>
+                                      </ul>
+                                      <button type="button" class="btn btn-lg btn-block  btn-custom ">Sign up for free</button>
+                                    </div>
+                                  </div>
+                                    ';
+                                    echo $thirtythree;
+                            
+                                    }
+
+
+
+                                    else
+               if($a[$y][0]=="34")
+                      {
+                      # Inbox Number
+                      $thirtyfour = '
+                      <article class="col-md-'.$vari.'" style="border: 1px solid #eee;
+                      padding: 15px; margin-bottom:50px">
+<a href="" class="float-right btn btn-outline-primary">Sign up</a>
+<h4 class="card-title mb-4 mt-1">Sign in</h4>
+	 <form>
+    <div class="form-group">
+    	<label>Your email</label>
+        <input name="" class="form-control" placeholder="Email" type="email">
+    </div> <!-- form-group// -->
+    <div class="form-group">
+    	<a class="float-right" href="#">Forgot?</a>
+    	<label>Your password</label>
+        <input class="form-control" placeholder="******" type="password">
+    </div> <!-- form-group// --> 
+    <div class="form-group"> 
+    <div class="checkbox">
+      <label> <input type="checkbox"> Save password </label>
+    </div> <!-- checkbox .// -->
+    </div> <!-- form-group// -->  
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+    </div> <!-- form-group// -->                                                           
+</form>
+</article>
+                      ';
+                      echo $thirtyfour;
+              
+                      }
+
+
+                      else
+               if($a[$y][0]=="35")
+                      {
+                      # Inbox Number
+                      $thirtyfive = '
+                      <article class="col-md-'.$vari.'" style="border: 1px solid #eee;
+                      padding: 15px; margin-bottom:50px">
+                      <a href="" class="float-right btn btn-outline-primary">Sign up</a>
+                      <h4 class="card-title mb-4 mt-1">Sign in</h4>
+                      <p>
+                        <a href="" class="btn btn-block btn-outline-info"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+                        <a href="" class="btn btn-block btn-outline-primary"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+                      </p>
+                      <hr>
+                      <form>
+                        <div class="form-group">
+                            <input name="" class="form-control" placeholder="Email or login" type="email">
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <input class="form-control" placeholder="******" type="password">
+                        </div> <!-- form-group// -->                                      
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+                                </div> <!-- form-group// -->
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <a class="small" href="#">Forgot password?</a>
+                            </div>                                            
+                        </div> <!-- .row// -->                                                                  
+                    </form>
+                    </article>
+                      ';
+                      echo $thirtyfive;
+              
+                      }
+
+else {
+
+}
+
+
+
+
+
+
+
+
+
+
+
 	}
 	}
 	

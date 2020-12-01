@@ -5,7 +5,8 @@
 
 # In[29]:
 
-
+import warnings
+warnings.filterwarnings("ignore")
 from keras.models import load_model
 import cv2
 import numpy as np
@@ -24,13 +25,13 @@ parser = ap.ArgumentParser()
 parser.add_argument("-i", "--image", help="Path to Image", required="True")
 args = vars(parser.parse_args())
 
-json_file = open('model.json', 'r')
+json_file = open('Characters/model.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 
 
-loaded_model.load_weights('model.h5')
+loaded_model.load_weights('Characters/model.h5')
 
 model = loaded_model
 
@@ -168,7 +169,7 @@ for i in range(0, np.shape(post)[0]):
 # return json file to process in json
 # ["Type of number", "RowID", "number of shape in the same row"]
 data = data.tolist()
-results = sorted(data,key=lambda x: int(x[1]))
+results = sorted(data,key=lambda x: (int(x[1]),int(x[0])), reverse=True)
 
 print(json.dumps(results))
 
